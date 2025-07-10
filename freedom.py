@@ -99,5 +99,3 @@ command_data_list2 = [
 ]
 uservo.send_sync_anglebyinterval(11, 7, command_data_list2)
 time.sleep(2.02)
-
-111
