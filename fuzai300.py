@@ -18,7 +18,8 @@ import struct
 # 导入串口舵机管理器
 from uservo import UartServoManager
 # 设置日志输出模式为INFO
-USERVO_PORT_NAME = 'COM9'
+USERVO_PORT_NAME = '/dev/ttyUSB0'  # 替换为实际的串口名称
+# USERVO_PORT_NAME = 'COM3'  # Windows系统下的串口名称
 uart = serial.Serial(port=USERVO_PORT_NAME, baudrate=1000000,\
                      parity=serial.PARITY_NONE, stopbits=1,\
                      bytesize=8,timeout=0)

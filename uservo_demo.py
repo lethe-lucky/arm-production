@@ -11,12 +11,13 @@ import math
 from uservo import UartServoManager
 # 参数配置
 # 角度定义
-SERVO_PORT_NAME =  'COM5' # 舵机串口号
+# USERVO_PORT_NAME = '/dev/ttyUSB0'  # 替换为实际的串口名称
+USERVO_PORT_NAME = 'COM3'  # Windows系统下的串口名称
 SERVO_BAUDRATE = 500000 # 舵机的波特率
 SERVO_ID = 0  # 舵机的ID号
 
 # 初始化串口
-uart = serial.Serial(port=SERVO_PORT_NAME, baudrate=SERVO_BAUDRATE,\
+uart = serial.Serial(port=USERVO_PORT_NAME, baudrate=SERVO_BAUDRATE,\
                      parity=serial.PARITY_NONE, stopbits=1,\
                      bytesize=8,timeout=0)
 # 初始化舵机管理器
