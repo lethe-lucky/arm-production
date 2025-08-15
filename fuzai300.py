@@ -26,27 +26,30 @@ uart = serial.Serial(port=USERVO_PORT_NAME, baudrate=1000000,\
 srv_num = 7# 舵机个数
 uservo = UartServoManager(uart, is_debug=True)
 
+while True:
+    command_data_list1 = [
+        struct.pack('<BhHHHH', 0, 0, 2000, 100, 100, 0) , # 同步命令角度模式控制(基於加减速時間)
+        struct.pack('<BhHHHH', 1, 0, 2000, 100, 100, 0) , #id2+度数40+总时间+启动加速时间+运动减速时间+功率
+        struct.pack('<BhHHHH', 2, 0, 2000, 100, 100, 0) ,
+        struct.pack('<BhHHHH', 3, 0, 2000, 100, 100, 0) ,
+        struct.pack('<BhHHHH', 4, 0, 2000, 100, 100, 0) ,
+        struct.pack('<BhHHHH', 5, 0, 2000, 100, 100, 0) ,
+        struct.pack('<BhHHHH', 6, 0, 2000, 100, 100, 0) ,
+    ]
+    uservo.send_sync_anglebyinterval(11, 7, command_data_list1)
+    time.sleep(2.02)
 
-command_data_list1 = [
-    struct.pack('<BhHHHH', 0, 0, 2000, 100, 100, 0) , # 同步命令角度模式控制(基於加减速時間)
-    struct.pack('<BhHHHH', 1, 0, 2000, 100, 100, 0) , #id2+度数40+总时间+启动加速时间+运动减速时间+功率
-    struct.pack('<BhHHHH', 2, 0, 2000, 100, 100, 0) ,
-    struct.pack('<BhHHHH', 3, 0, 2000, 100, 100, 0) ,
-    struct.pack('<BhHHHH', 4, 0, 2000, 100, 100, 0) ,
-    struct.pack('<BhHHHH', 5, 0, 2000, 100, 100, 0) ,
-    struct.pack('<BhHHHH', 6, 0, 2000, 100, 100, 0) ,
-]
-uservo.send_sync_anglebyinterval(11, 7, command_data_list1)
-time.sleep(2.02)
+    command_data_list2 = [
+        struct.pack('<BhHHHH', 0, 0, 2000, 100, 100, 0) , # 同步命令角度模式控制(基於加减速時間)
+        struct.pack('<BhHHHH', 1, 360, 2000, 100, 100, 0) , #id2+度数40+总时间+启动加速时间+运动减速时间+功率
+        struct.pack('<BhHHHH', 2, 330, 2000, 100, 100, 0) ,
+        struct.pack('<BhHHHH', 3, -70, 2000, 100, 100, 0) ,
+        struct.pack('<BhHHHH', 4, -700, 2000, 100, 100, 0) ,
+        struct.pack('<BhHHHH', 5, 110, 2000, 100, 100, 0) ,
+        struct.pack('<BhHHHH', 6, 0, 2000, 100, 100, 0) ,
+    ]
+    uservo.send_sync_anglebyinterval(11, 7, command_data_list2)
+    time.sleep(2.02)
 
-command_data_list2 = [
-    struct.pack('<BhHHHH', 0, 0, 2000, 100, 100, 0) , # 同步命令角度模式控制(基於加减速時間)
-    struct.pack('<BhHHHH', 1, 360, 2000, 100, 100, 0) , #id2+度数40+总时间+启动加速时间+运动减速时间+功率
-    struct.pack('<BhHHHH', 2, 330, 2000, 100, 100, 0) ,
-    struct.pack('<BhHHHH', 3, -70, 2000, 100, 100, 0) ,
-    struct.pack('<BhHHHH', 4, -700, 2000, 100, 100, 0) ,
-    struct.pack('<BhHHHH', 5, 110, 2000, 100, 100, 0) ,
-    struct.pack('<BhHHHH', 6, 0, 2000, 100, 100, 0) ,
-]
-uservo.send_sync_anglebyinterval(11, 7, command_data_list2)
-time.sleep(2.02)
+    temperatures = [uservo.query_temperature(servo_id) for servo_id in range(0, 7)]
+    print("舵机温度: " + ", ".join([f"【{id}】:{temp}" for id, temp in enumerate(temperatures)]))
