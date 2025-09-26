@@ -51,5 +51,5 @@ while True:
     uservo.send_sync_anglebyinterval(11, 7, command_data_list2)
     time.sleep(2.02)
 
-    temperatures = [uservo.query_temperature(servo_id) for servo_id in range(0, 7)]
+    temperatures = [uservo.query_temperature(servo_id) for servo_id in range(0, 7)] 
     print("舵机温度: " + ", ".join([f"【{id}】:{temp}" for id, temp in enumerate(temperatures)]))
