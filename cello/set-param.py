@@ -260,7 +260,7 @@ class ServoProtocol:
 if __name__ == "__main__":
     # 创建舵机通信协议对象
     # 注意：需要替换为实际的串口端口
-    servo = ServoProtocol("/dev/ttyUSB1",baudrate=1000000)  # Windows系统示例，Linux系统可能是"/dev/ttyUSB0"
+    servo = ServoProtocol("/dev/ttyUSB0",baudrate=1000000)  # Windows系统示例，Linux系统可能是"/dev/ttyUSB0"
     
     # 定义0-6号舵机的公开参数字典
     public_params_dict = {
@@ -417,7 +417,7 @@ if __name__ == "__main__":
             "hold_kd": 50,
             "hold_bias": 0,
             "forward_direction": 0,
-            "dead_zone": 1
+            "dead_zone": 3
         },
         1: {  # 舵机ID 1的参数
             "kp": 850,
@@ -450,7 +450,7 @@ if __name__ == "__main__":
             "hold_kd": 50,
             "hold_bias": 0,
             "forward_direction": 0,
-            "dead_zone": 1
+            "dead_zone": 3
         },
         4: {  # 舵机ID 4的参数
             "kp": 800,
@@ -461,7 +461,7 @@ if __name__ == "__main__":
             "hold_kd": 50,
             "hold_bias": 0,
             "forward_direction": 0,
-            "dead_zone": 1
+            "dead_zone": 3
         },
         5: {  # 舵机ID 5的参数
             "kp": 800,
@@ -472,7 +472,7 @@ if __name__ == "__main__":
             "hold_kd": 50,
             "hold_bias": 0,
             "forward_direction": 0,
-            "dead_zone": 1
+            "dead_zone": 3
         },
         6: {  # 舵机ID 6的参数
             "kp": 800,
@@ -483,7 +483,7 @@ if __name__ == "__main__":
             "hold_kd": 50,
             "hold_bias": 0,
             "forward_direction": 0,
-            "dead_zone": 1
+            "dead_zone": 3
         }
     }
 

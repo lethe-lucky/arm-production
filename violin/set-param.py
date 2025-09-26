@@ -417,7 +417,7 @@ if __name__ == "__main__":
             "hold_kd": 2300,
             "hold_bias": 0,
             "forward_direction": 0,
-            "dead_zone": 1
+            "dead_zone": 3
         },
         1: {  # 舵机ID 1的参数
             "kp": 800,
@@ -450,7 +450,7 @@ if __name__ == "__main__":
             "hold_kd": 2300,
             "hold_bias": 0,
             "forward_direction": 0,
-            "dead_zone": 1
+            "dead_zone": 3
         },
         4: {  # 舵机ID 4的参数
             "kp": 200,
@@ -461,7 +461,7 @@ if __name__ == "__main__":
             "hold_kd": 20,
             "hold_bias": 0,
             "forward_direction": 0,
-            "dead_zone": 1
+            "dead_zone": 3
         },
         5: {  # 舵机ID 5的参数
             "kp": 200,
@@ -472,7 +472,7 @@ if __name__ == "__main__":
             "hold_kd": 20,
             "hold_bias": 0,
             "forward_direction": 0,
-            "dead_zone": 1
+            "dead_zone": 3
         },
         6: {  # 舵机ID 6的参数
             "kp": 200,
@@ -483,7 +483,7 @@ if __name__ == "__main__":
             "hold_kd": 20,
             "hold_bias": 0,
             "forward_direction": 0,
-            "dead_zone": 1
+            "dead_zone": 3
         }
     }
     
