@@ -2,6 +2,9 @@ import serial
 import struct
 import time
 
+BAUDRATE = 1000000
+USB = "/dev/ttyUSB0"
+
 class ServoProtocol:
     
     def __init__(self, port, baudrate=115200, timeout=0.1):
@@ -260,7 +263,7 @@ class ServoProtocol:
 if __name__ == "__main__":
     # 创建舵机通信协议对象
     # 注意：需要替换为实际的串口端口
-    servo = ServoProtocol("/dev/ttyUSB0",baudrate=1000000)  # Windows系统示例，Linux系统可能是"/dev/ttyUSB0"
+    servo = ServoProtocol(USB,baudrate=BAUDRATE)  # Windows系统示例，Linux系统可能是"/dev/ttyUSB0"
     
     # 定义0-6号舵机的公开参数字典
     public_params_dict = {
