@@ -26,6 +26,8 @@ uart = serial.Serial(port=USERVO_PORT_NAME, baudrate=1000000,\
 srv_num = 7# 舵机个数
 uservo = UartServoManager(uart, is_debug=True)
 
+uservo.reset_multi_turn_angle(0xff)
+time.sleep(1.02)
 
 command_data_list1 = [
     struct.pack('<BhHHHH', 0, 0, 2000, 100, 100, 0) , # 同步命令角度模式控制(基於加减速時間)

@@ -442,12 +442,12 @@ if __name__ == "__main__":
             "dead_zone": 3
         },
         3: {  # 舵机ID 3的参数
-            "kp": 400,
-            "kd": 2300,
+            "kp": 200,
+            "kd": 1100,
             "ki": 0,
             "bias": 0,
-            "hold_kp": 400,
-            "hold_kd": 2300,
+            "hold_kp": 200,
+            "hold_kd": 1100,
             "hold_bias": 0,
             "forward_direction": 0,
             "dead_zone": 3
@@ -465,11 +465,11 @@ if __name__ == "__main__":
         },
         5: {  # 舵机ID 5的参数
             "kp": 200,
-            "kd": 20,
+            "kd": 1100,
             "ki": 0,
             "bias": 0,
             "hold_kp": 200,
-            "hold_kd": 20,
+            "hold_kd": 1100,
             "hold_bias": 0,
             "forward_direction": 0,
             "dead_zone": 3
