@@ -11,7 +11,7 @@ import math
 # 导入串口舵机管理器
 from uservo import UartServoManager
 # 设置日志输出模式为INFO
-USERVO_PORT_NAME = '/dev/ttyUSB0'  # 替换为实际的串口名称
+USERVO_PORT_NAME = '/dev/ttyUSB1'  # 替换为实际的串口名称
 # USERVO_PORT_NAME = 'COM3'  # Windows系统下的串口名称
 uart = serial.Serial(port=USERVO_PORT_NAME, baudrate=1000000,\
                      parity=serial.PARITY_NONE, stopbits=1,\
@@ -22,9 +22,18 @@ uservo = UartServoManager(uart, is_debug=True)
 uservo.reset_multi_turn_angle(0xff)
 time.sleep(1.02)
 
-while True:
-    power = uservo.query_power(6)
-    print(f"power: {power}")
+start_time = time.time()
+while(True):
+    loop_start = time.time()
+    uservo.set_servo_angle(servo_id=6, angle=0.0, interval=100, t_acc=50, t_dec=50, power=1000, is_mturn=True)
+    temp = uservo.query_temperature(6)
+    stat = uservo.query_status(6)
+    print(f"循环运行时长: {time.time() - start_time:.2f}s | 温度(°C, id=6): {temp:.1f} | 状态: {stat}")
+    elapsed = time.time() - loop_start
+    period = 1.0/60.0
+    sleep_time = period - elapsed
+    if sleep_time > 0:
+        time.sleep(sleep_time)
 # 舵机通讯检测
 # is_online = uservo.ping(SERVO_ID)
 # print("舵机ID={} 是否在线: {}".format(SERVO_ID, is_online))

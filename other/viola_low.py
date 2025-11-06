@@ -22,9 +22,16 @@ uservo = UartServoManager(uart, is_debug=True)
 uservo.reset_multi_turn_angle(0xff)
 time.sleep(1.02)
 
-while True:
-    power = uservo.query_power(6)
-    print(f"power: {power}")
+uservo.set_servo_angle(servo_id=6, angle=0.0, interval=100, t_acc=50, t_dec=50,power=0, is_mturn=True) # 设置舵机角度(指定周期 单位ms)
+time.sleep(1.02)
+
+start_time = time.time()
+while(True):
+    temp=uservo.query_temperature(6)
+    time.sleep(0.01)
+    stat=uservo.query_status(6)
+    time.sleep(0.01)
+    print(f"循环运行时长: {time.time() - start_time:.2f}s   |  温度(°C, id=6): {temp:.1f} | 状态: {stat}")
 # 舵机通讯检测
 # is_online = uservo.ping(SERVO_ID)
 # print("舵机ID={} 是否在线: {}".format(SERVO_ID, is_online))

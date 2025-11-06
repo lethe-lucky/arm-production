@@ -272,12 +272,12 @@ if __name__ == "__main__":
             'need_response':0,
             "baudrate": 8,
             "stall_protection": 0,
-            "stall_power_limit": 30000,
+            "stall_power_limit": 6000,
             "low_voltage_protection": 4000,
-            "high_voltage_protection": 20000,
-            "temperature_protection": 735,
-            "power_protection": 30000,
-            "current_protection": 8000,
+            "high_voltage_protection": 12600,
+            "temperature_protection": 1058,
+            "power_protection": 10000,
+            "current_protection": 6000,
             "startup_force": 0,
             "hysteresis_percent": 80,
             "power_lock_switch": 0,
@@ -294,10 +294,10 @@ if __name__ == "__main__":
             "stall_protection": 0,
             "stall_power_limit": 50000,
             "low_voltage_protection": 4000,
-            "high_voltage_protection": 20000,
+            "high_voltage_protection": 12600,
             "temperature_protection": 735,
             "power_protection": 50000,
-            "current_protection": 8000,
+            "current_protection": 6000,
             "startup_force": 0,
             "hysteresis_percent": 80,
             "power_lock_switch": 0,
@@ -312,12 +312,12 @@ if __name__ == "__main__":
             'need_response':0,
             "baudrate": 8,
             "stall_protection": 0,
-            "stall_power_limit": 30000,
+            "stall_power_limit": 50000,
             "low_voltage_protection": 4000,
-            "high_voltage_protection": 20000,
+            "high_voltage_protection": 12600,
             "temperature_protection": 735,
-            "power_protection": 30000,
-            "current_protection": 8000,
+            "power_protection": 50000,
+            "current_protection": 6000,
             "startup_force": 0,
             "hysteresis_percent": 80,
             "power_lock_switch": 0,
@@ -334,9 +334,9 @@ if __name__ == "__main__":
             "stall_protection": 0,
             "stall_power_limit": 6000,
             "low_voltage_protection": 4000,
-            "high_voltage_protection": 20000,
-            "temperature_protection": 735,
-            "power_protection": 25000,
+            "high_voltage_protection": 12600,
+            "temperature_protection": 1058,
+            "power_protection": 10000,
             "current_protection": 6000,
             "startup_force": 0,
             "hysteresis_percent": 80,
@@ -354,10 +354,10 @@ if __name__ == "__main__":
             "stall_protection": 0,
             "stall_power_limit": 6000,
             "low_voltage_protection": 4000,
-            "high_voltage_protection": 20000,
-            "temperature_protection": 735,
-            "power_protection": 25000,
-            "current_protection": 4000,
+            "high_voltage_protection": 12600,
+            "temperature_protection": 1058,
+            "power_protection": 10000,
+            "current_protection": 6000,
             "startup_force": 0,
             "hysteresis_percent": 80,
             "power_lock_switch": 0,
@@ -374,10 +374,10 @@ if __name__ == "__main__":
             "stall_protection": 0,
             "stall_power_limit": 6000,
             "low_voltage_protection": 4000,
-            "high_voltage_protection": 20000,
-            "temperature_protection": 735,
-            "power_protection": 20000,
-            "current_protection": 4000,
+            "high_voltage_protection": 12600,
+            "temperature_protection": 1058,
+            "power_protection": 10000,
+            "current_protection": 6000,
             "startup_force": 0,
             "hysteresis_percent": 80,
             "power_lock_switch": 0,
@@ -394,10 +394,10 @@ if __name__ == "__main__":
             "stall_protection": 0,
             "stall_power_limit": 2000,
             "low_voltage_protection": 4000,
-            "high_voltage_protection": 20000,
-            "temperature_protection": 735,
+            "high_voltage_protection": 12600,
+            "temperature_protection": 1058,
             "power_protection": 4000,
-            "current_protection": 4000,
+            "current_protection": 6000,
             "startup_force": 0,
             "hysteresis_percent": 80,
             "power_lock_switch": 0,
@@ -413,84 +413,84 @@ if __name__ == "__main__":
     # 定义0-6号舵机的内部参数字典
     internal_params_dict = {
         0: {  # 舵机ID 0的参数
-            "kp": 850,
-            "kd": 50,
+            "kp": 400,
+            "kd": 2300,
             "ki": 0,
             "bias": 0,
-            "hold_kp": 850,
-            "hold_kd": 50,
+            "hold_kp": 400,
+            "hold_kd": 2300,
             "hold_bias": 0,
             "forward_direction": 0,
             "dead_zone": 3
         },
         1: {  # 舵机ID 1的参数
-            "kp": 850,
+            "kp": 800,
             "kd": 50,
             "ki": 0,
             "bias": 0,
-            "hold_kp": 850,
+            "hold_kp": 800,
             "hold_kd": 50,
             "hold_bias": 0,
             "forward_direction": 0,
             "dead_zone": 3
         },
         2: {  # 舵机ID 2的参数
-            "kp": 850,
+            "kp": 800,
             "kd": 50,
             "ki": 0,
             "bias": 0,
-            "hold_kp": 850,
+            "hold_kp": 800,
             "hold_kd": 50,
             "hold_bias": 0,
             "forward_direction": 0,
             "dead_zone": 3
         },
         3: {  # 舵机ID 3的参数
-            "kp": 800,
-            "kd": 50,
+            "kp": 200,
+            "kd": 1100,
             "ki": 0,
             "bias": 0,
-            "hold_kp": 800,
-            "hold_kd": 50,
+            "hold_kp": 200,
+            "hold_kd": 1100,
             "hold_bias": 0,
             "forward_direction": 0,
             "dead_zone": 3
         },
         4: {  # 舵机ID 4的参数
-            "kp": 800,
-            "kd": 50,
+            "kp": 200,
+            "kd": 20,
             "ki": 0,
             "bias": 0,
-            "hold_kp": 800,
-            "hold_kd": 50,
+            "hold_kp": 200,
+            "hold_kd": 20,
             "hold_bias": 0,
             "forward_direction": 0,
             "dead_zone": 3
         },
         5: {  # 舵机ID 5的参数
-            "kp": 800,
-            "kd": 50,
+            "kp": 200,
+            "kd": 1100,
             "ki": 0,
             "bias": 0,
-            "hold_kp": 800,
-            "hold_kd": 50,
+            "hold_kp": 200,
+            "hold_kd": 1100,
             "hold_bias": 0,
             "forward_direction": 0,
             "dead_zone": 3
         },
         6: {  # 舵机ID 6的参数
-            "kp": 800,
-            "kd": 50,
+            "kp": 200,
+            "kd": 20,
             "ki": 0,
             "bias": 0,
-            "hold_kp": 800,
-            "hold_kd": 50,
+            "hold_kp": 200,
+            "hold_kd": 20,
             "hold_bias": 0,
             "forward_direction": 0,
             "dead_zone": 3
         }
     }
-
+    
     # 使用字典设置公开参数
     print("设置所有舵机的公开参数...")
     for servo_id, params in public_params_dict.items():
@@ -500,7 +500,8 @@ if __name__ == "__main__":
         time.sleep(0.5)  # 添加延时以确保命令被处理
     
     time.sleep(0.5)  # 在公开参数和内部参数设置之间添加延时
-    
+
+
     # 使用字典设置内部参数
     print("设置所有舵机的内部参数...")
     for servo_id, params in internal_params_dict.items():
@@ -508,11 +509,7 @@ if __name__ == "__main__":
         # 使用字典解包传递参数，并显式传入servo_id
         servo.write_internal_parameters(servo_id=servo_id, **params)
         time.sleep(0.5)  # 添加延时以确保命令被处理
-    
-    # 添加验证逻辑，检查参数是否正确写入
-    print("\n开始验证参数是否正确写入...")
-    
-    # 定义需要比较的公开参数和内部参数列表
+        # 定义需要比较的公开参数和内部参数列表
     public_params_to_check = [
         'need_response', 'baudrate', 'stall_protection', 'stall_power_limit',
         'low_voltage_protection', 'high_voltage_protection', 'temperature_protection',
@@ -525,7 +522,7 @@ if __name__ == "__main__":
         'kp', 'kd', 'ki', 'bias', 'hold_kp', 'hold_kd', 'hold_bias',
         'forward_direction', 'dead_zone'
     ]
-    
+
     # 验证所有舵机的参数
     all_valid = True
     for servo_id in range(7):  # 验证0-6号舵机
@@ -599,6 +596,7 @@ if __name__ == "__main__":
         else:
             print(f"舵机 {servo_id} 内部参数验证通过")
     
+
     # 输出最终验证结果
     if all_valid:
         print("\n所有舵机参数验证通过，参数设置成功！")

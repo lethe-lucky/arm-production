@@ -101,3 +101,8 @@ command_data_list2 = [
 ]
 uservo.send_sync_anglebyinterval(11, 7, command_data_list2)
 time.sleep(2.02)
+
+for i in range(5):
+    curren_angle = uservo.query_servo_angle(servo_id=6)
+    print(f"角度: {curren_angle:.1f}")
+    time.sleep(1.02)

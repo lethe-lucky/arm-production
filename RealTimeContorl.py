@@ -39,24 +39,19 @@ def main(args=None):
     get_frequency = measure_frequency()
     servo_ids = [0,1,2,3,4,5,6]
     target_angle = [0.0 for i in range(len(servo_ids))]
-    # target_power = [0.0 for i in range(len(servo_ids))]
+    follower_temperature = [0.0 for i in range(len(servo_ids))]
     while True:
         leader_control.send_sync_servo_monitor(servo_ids)  
-        # follower_control.send_sync_servo_monitor(servo_ids)
+        follower_control.send_sync_servo_monitor(servo_ids)
         for id in servo_ids: 
             target_angle[id] = leader_control.servos[id].angle_monitor
-            # target_power[id] = follower_control.servos[id].power
-
+            follower_temperature[id] = follower_control.servos[id].temp
         
         
-        command_data_list = [struct.pack("<BlLHHH", i, int(target_angle[i]*10), 200, 80, 80, 0) for i in servo_ids]
+        command_data_list = [struct.pack("<BlLHHH", i, int(target_angle[i]*10), 100, 50, 50, 0) for i in servo_ids]
         follower_control.send_sync_multiturnanglebyinterval(14,7, command_data_list)
-        # leader_control.set_damping(6,target_power[6])
         time.sleep(0.005)
-
-        freq = get_frequency()
-        if freq is not None:
-            print(f"当前运行频率: {freq:.2f} Hz")
+        print(f"follower温度(°C, id=6): {follower_temperature[6]:.1f}")
 
 
 if __name__ == "__main__":

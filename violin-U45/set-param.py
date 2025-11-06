@@ -3,7 +3,8 @@ import struct
 import time
 
 BAUDRATE = 1000000
-USB = "/dev/ttyUSB0"
+USB = "/dev/ttyUSB0"    # 替换为实际的串口名称
+# USB = 'COM3'  # Windows系统下的串口名称
 
 class ServoProtocol:
     
@@ -412,12 +413,12 @@ if __name__ == "__main__":
     # 定义0-6号舵机的内部参数字典
     internal_params_dict = {
         0: {  # 舵机ID 0的参数
-            "kp": 400,
-            "kd": 2300,
+            "kp": 300,
+            "kd": 700,
             "ki": 0,
             "bias": 0,
-            "hold_kp": 400,
-            "hold_kd": 2300,
+            "hold_kp": 300,
+            "hold_kd": 700,
             "hold_bias": 0,
             "forward_direction": 0,
             "dead_zone": 3
@@ -445,45 +446,45 @@ if __name__ == "__main__":
             "dead_zone": 3
         },
         3: {  # 舵机ID 3的参数
-            "kp": 200,
-            "kd": 1100,
+            "kp": 5,
+            "kd": 2,
             "ki": 0,
             "bias": 0,
-            "hold_kp": 200,
-            "hold_kd": 1100,
+            "hold_kp": 5,
+            "hold_kd": 2,
             "hold_bias": 0,
             "forward_direction": 0,
             "dead_zone": 3
         },
         4: {  # 舵机ID 4的参数
-            "kp": 200,
-            "kd": 20,
+            "kp": 5,
+            "kd": 2,
             "ki": 0,
             "bias": 0,
-            "hold_kp": 200,
-            "hold_kd": 20,
+            "hold_kp": 5,
+            "hold_kd": 2,
             "hold_bias": 0,
             "forward_direction": 0,
             "dead_zone": 3
         },
         5: {  # 舵机ID 5的参数
-            "kp": 200,
-            "kd": 1100,
+            "kp": 5,
+            "kd": 2,
             "ki": 0,
             "bias": 0,
-            "hold_kp": 200,
-            "hold_kd": 1100,
+            "hold_kp": 5,
+            "hold_kd": 2,
             "hold_bias": 0,
             "forward_direction": 0,
             "dead_zone": 3
         },
         6: {  # 舵机ID 6的参数
-            "kp": 200,
-            "kd": 20,
+            "kp": 5,
+            "kd": 2,
             "ki": 0,
             "bias": 0,
-            "hold_kp": 200,
-            "hold_kd": 20,
+            "hold_kp": 5,
+            "hold_kd": 2,
             "hold_bias": 0,
             "forward_direction": 0,
             "dead_zone": 3
