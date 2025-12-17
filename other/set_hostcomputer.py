@@ -2,6 +2,11 @@ import serial
 import struct
 import time
 
+SERVO_ID=4
+BAUDRATE = 1000000
+USB = "/dev/ttyUSB0"    # 替换为实际的串口名称
+# USB = 'COM3'  # Windows系统下的串口名称
+
 class ServoProtocol:
     
     def __init__(self, port, baudrate=115200, timeout=0.1):
@@ -14,10 +19,67 @@ class ServoProtocol:
     def calculate_checksum(self, data):
         return sum(data) % 256
     
+    def ping(self, servo_id=0x00):
+        """
+        舵机通讯检测函数
+        发送: 0x12 0x4c 0x01 0x01 servo_id checksum
+        期望回包: 0x05 0x1c 0x01 0x01 servo_id checksum
+        """
+        # 清空串口缓冲区
+        self.serial.reset_input_buffer()
+        
+        # 构建发送数据包
+        cmd_data = [0x12, 0x4C, 0x01, 0x01, servo_id]
+        checksum = self.calculate_checksum(cmd_data)
+        packet = bytes(cmd_data + [checksum])
+        
+        # 发送数据包
+        try:
+            self.serial.write(packet)
+            # 等待回包
+            time.sleep(0.2)  # 增加等待时间
+            
+            # 读取回包
+            if self.serial.in_waiting:
+                response = self.serial.read(self.serial.in_waiting)
+                # print(f"发送数据: {packet.hex(' ')}")
+                # print(f"接收数据: {response.hex(' ')}")
+                
+                # 检查回包长度和内容
+                if len(response) >= 6:
+                    # 验证回包格式：0x05 0x1c 0x01 0x01 servo_id checksum
+                    if (response[0] == 0x05 and response[1] == 0x1C and 
+                        response[2] == 0x01 and response[3] == 0x01 and 
+                        response[4] == servo_id):
+                        
+                        # 验证校验和
+                        expected_checksum = self.calculate_checksum(response[:-1])
+                        if response[5] == expected_checksum:
+                            print("=" * 50)
+                            print(f"舵机ID={servo_id} 通讯正常")
+                            print("=" * 50)
+                            return True
+                        else:
+                            print(f"校验和错误，期望: {expected_checksum:02X}, 实际: {response[5]:02X}")
+                            return False
+                    else:
+                        print("回包格式不正确")
+                        return False
+                else:
+                    print("回包数据长度不足")
+                    return False
+            else:
+                print("未收到回包数据")
+                return False
+                
+        except Exception as e:
+            print(f"ping操作失败: {e}")
+            return False
+    
     def write_public_parameters(self, 
-                               servo_id=0,                      # 舵机ID
+                               servo_id=SERVO_ID,               # 舵机ID
                                need_response=0,                 # 控制送出后是否响应
-                               baudrate=5,                      # 波特率
+                               baudrate=8,                      # 波特率
                                stall_protection=0,              # 堵转保护开关
                                stall_power_limit=6000,          # 堵转功率上限
                                low_voltage_protection=4000,     # 低电压保护值
@@ -92,7 +154,7 @@ class ServoProtocol:
             return False
     
     def write_internal_parameters(self, 
-                                 servo_id=0,              # 舵机ID
+                                 servo_id=SERVO_ID,              # 舵机ID
                                  kp=800,                  # 比例系数
                                  kd=50,                   # 微分系数
                                  ki=0,                    # 积分系数
@@ -143,7 +205,7 @@ class ServoProtocol:
             print(f"发送数据失败: {e}")
             return False
         
-    def read_public_parameters(self, servo_id=0x00):
+    def read_public_parameters(self, servo_id=SERVO_ID):
         # 清空串口缓冲区
         self.serial.reset_input_buffer()
         # 构建数据包
@@ -204,7 +266,7 @@ class ServoProtocol:
             print(f"读取数据失败: {e}")
             return False
     
-    def read_internal_parameters(self, servo_id=0x00):
+    def read_internal_parameters(self, servo_id=SERVO_ID):
         # 清空串口缓冲区
         self.serial.reset_input_buffer()
         # 构建数据包
@@ -260,17 +322,40 @@ class ServoProtocol:
 if __name__ == "__main__":
     # 创建舵机通信协议对象
     # 注意：需要替换为实际的串口端口
-    servo = ServoProtocol("COM9", baudrate=115200)  # Windows系统示例，Linux系统可能是"/dev/ttyUSB0"
-    
-    # 写入公开参数
-    # servo.write_public_parameters()
-    
-    # 写入内部参数
-    # servo.write_internal_parameters()
-    
-    # 读取公开参数
-    # servo.read_public_parameters()
-    
-    
-    # 读取内部参数
-    # servo.read_internal_parameters()
+    servo = ServoProtocol(USB,baudrate=BAUDRATE)  # Windows系统示例，Linux系统可能是"/dev/ttyUSB0"
+
+    # 舵机通讯检测
+    is_online = servo.ping(SERVO_ID)
+
+    if is_online:
+        print("\n开始设置舵机参数...")
+        
+        # 写入公开参数
+        if servo.write_public_parameters():
+            print("✓ 公开参数写入成功")
+        else:
+            print("✗ 公开参数写入失败")
+            
+        # 写入内部参数
+        if servo.write_internal_parameters():
+            print("✓ 内部参数写入成功")
+        else:
+            print("✗ 内部参数写入失败")
+            
+        time.sleep(0.5)  # 等待参数生效
+        
+        # 读取公开参数
+        if servo.read_public_parameters():
+            print("✓ 公开参数读取成功")
+        else:
+            print("✗ 公开参数读取失败")
+            
+        # 读取内部参数
+        if servo.read_internal_parameters():
+            print("✓ 内部参数读取成功")
+        else:
+            print("✗ 内部参数读取失败")
+            
+        print("\n舵机参数正确设置完成！")
+    else:
+        print("无法写入参数")
