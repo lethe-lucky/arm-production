@@ -83,9 +83,9 @@ class ServoProtocol:
                                stall_protection=0,              # 堵转保护开关
                                stall_power_limit=6000,          # 堵转功率上限
                                low_voltage_protection=4000,     # 低电压保护值
-                               high_voltage_protection=12600,   # 高电压保护值
+                               high_voltage_protection=20000,   # 高电压保护值
                                temperature_protection=735,      # 温度保护值
-                               power_protection=20000,          # 功率保护值
+                               power_protection=25000,          # 功率保护值
                                current_protection=4000,         # 电流保护值
                                startup_force=0,                 # 启动力度
                                hysteresis_percent=80,           # 迟滞百分比
@@ -163,7 +163,7 @@ class ServoProtocol:
                                  hold_kd=50,              # 保持微分系数
                                  hold_bias=0,             # 保持偏置
                                  forward_direction=0,     # 正转方向
-                                 dead_zone=1):            # 死区
+                                 dead_zone=3):            # 死区
 
         # 构建数据包
         header = bytes([0x13, 0x4D, 0xC4, 0x1A])
