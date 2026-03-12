@@ -28,7 +28,7 @@ BAUDRATE = 1000000
 python3 ./violin-U25/set-param.py 
 ```
 
-步骤5： 手臂重新上下电后，运行freedom.py文件，进行关节自由度测试
+步骤5： 手臂重新上下电后，运行freedom.py文件，进行关节自由度测试,检查零点是否正确，舵机转动是否有异响
 
 ```bash
 python3 ./freedom.py
