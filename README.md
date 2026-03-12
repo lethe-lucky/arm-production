@@ -10,7 +10,7 @@
 BAUDRATE = 115200
 ```
 
-步骤2： 运行set-param.py文件
+步骤2： 运行set-param.py文件，不用管终端提示不通过，运行完毕后按步骤3走就行
 
 ```bash
 python3 ./violin-U25/set-param.py 
@@ -22,7 +22,7 @@ python3 ./violin-U25/set-param.py
 BAUDRATE = 1000000
 ```
 
-步骤4： 运行set-param.py文件
+步骤4： 运行set-param.py文件，显示`所有舵机参数验证通过，参数设置成功！`即可进行步骤5,否则请检查手臂
 
 ```bash
 python3 ./violin-U25/set-param.py 
