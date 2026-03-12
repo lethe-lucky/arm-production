@@ -1,21 +1,35 @@
 # arm-production
 
-## 设置波特率1000000
-
-自己设置
-
 ## 写参数
 
-用cello or violin 文件夹里的set-param.py
+### 什么手臂就用哪款手臂下的set-param.py文件，以violin-U25为例，特别注明：cello使用High_Rigidity_High_Jitter.py
 
-## 负载测试
+步骤1： 修改set-param.py文件中的BAUDRATE参数为115200并保存文件，如下所示
 
-fuzai300.py
+```bash
+BAUDRATE = 115200
+```
 
-## 主从测试
+步骤2： 运行set-param.py文件
 
-RealTimeContorl.py
+```bash
+python3 ./violin-U25/set-param.py 
+```
 
-## 读取测试
+步骤3： 修改set-param.py文件中的BAUDRATE参数为1000000并保存文件，如下所示
 
-RealTimeRead.py
+```bash
+BAUDRATE = 1000000
+```
+
+步骤4： 运行set-param.py文件
+
+```bash
+python3 ./violin-U25/set-param.py 
+```
+
+步骤5： 手臂重新上下电后，运行freedom.py文件，进行关节自由度测试
+
+```bash
+python3 ./freedom.py
+```
